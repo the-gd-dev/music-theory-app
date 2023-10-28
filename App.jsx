@@ -1,54 +1,23 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
-
-import React, {useEffect} from 'react';
-import {
-  Image,
-  SafeAreaView,
-  StatusBar,
-  StyleSheet,
-  View,
-  useColorScheme,
-} from 'react-native';
-
-import {Colors} from 'react-native/Libraries/NewAppScreen';
-import {colors, images} from './assets';
+import {useEffect} from 'react';
+import {StyleSheet} from 'react-native';
 import BootSplash from 'react-native-bootsplash';
+import AppIntro from './src/screens/AppIntro/AppIntro';
+import {NavigationContainer} from '@react-navigation/native';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
+
+const Stack = createNativeStackNavigator();
 
 function App() {
-  const isDarkMode = useColorScheme() === 'dark';
   useEffect(() => {
     BootSplash.hide();
   }, []);
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
 
   return (
-    <SafeAreaView>
-      <StatusBar
-        translucent
-        barStyle={'light-content'}
-        backgroundColor={'transparent'}
-      />
-      <View
-        style={{
-          backgroundColor: colors.dark,
-          height: '100%',
-          alignItems: 'center',
-          justifyContent: 'center',
-        }}>
-        <Image
-          source={images.logoVertical}
-          style={{height: 180, width: 180}}
-          resizeMode="contain"
-        />
-      </View>
-    </SafeAreaView>
+    <NavigationContainer>
+      <Stack.Navigator screenOptions={{headerShown: false}}>
+        <Stack.Screen name="AppIntro" component={AppIntro} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
 
