@@ -5,31 +5,49 @@
  * @format
  */
 
-import React from 'react';
+import React, {useEffect} from 'react';
 import {
+  Image,
   SafeAreaView,
   StatusBar,
   StyleSheet,
-  Text,
-  useColorScheme,
   View,
+  useColorScheme,
 } from 'react-native';
 
 import {Colors} from 'react-native/Libraries/NewAppScreen';
+import {colors, images} from './assets';
+import BootSplash from 'react-native-bootsplash';
 
 function App() {
   const isDarkMode = useColorScheme() === 'dark';
-
+  useEffect(() => {
+    BootSplash.hide();
+  }, []);
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
 
   return (
-    <SafeAreaView style={backgroundStyle}>
+    <SafeAreaView>
       <StatusBar
-        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-        backgroundColor={backgroundStyle.backgroundColor}
+        translucent
+        barStyle={'light-content'}
+        backgroundColor={'transparent'}
       />
+      <View
+        style={{
+          backgroundColor: colors.dark,
+          height: '100%',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}>
+        <Image
+          source={images.logoVertical}
+          style={{height: 180, width: 180}}
+          resizeMode="contain"
+        />
+      </View>
     </SafeAreaView>
   );
 }

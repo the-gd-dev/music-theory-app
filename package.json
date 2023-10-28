@@ -12,7 +12,8 @@
   "dependencies": {
     "@react-native-community/cli-doctor": "^11.3.9",
     "react": "18.2.0",
-    "react-native": "0.72.6"
+    "react-native": "0.72.6",
+    "react-native-bootsplash": "^5.0.4"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
