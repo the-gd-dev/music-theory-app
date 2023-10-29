@@ -10,7 +10,7 @@ import {
 
 const AppIntro = ({navigation}) => {
   return (
-    <Container containerStyles={styles.container}>
+    <Container containerStyles={styles.container} statusBarMode="light">
       <View style={styles.contentContainer}>
         <View>
           <Text style={styles.heading}>Let's start learning</Text>
@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: fontSizes.display2,
     color: colors.tertiary,
-    fontFamily: fontFamily.NotoSans,
+    fontFamily: fontFamily.NotoSans.Regular,
     fontWeight: '400',
   },
   container: {

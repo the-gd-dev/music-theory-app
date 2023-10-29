@@ -1,6 +1,8 @@
 import {HomeTabContent} from './HomeTabContent';
 import {NotesTabContent} from './NotesTabContent';
 import {Home, MusicNote, Settings, User} from '../../../assets';
+import ProfileTabContent from './ProfileTabContent';
+import {SettingsTabContent} from './SettingsTabContent';
 export const tabs = [
   {
     id: 1,
@@ -18,12 +20,12 @@ export const tabs = [
     id: 3,
     label: 'Profile',
     icon: User,
-    content: HomeTabContent,
+    content: ProfileTabContent,
   },
   {
     id: 4,
     label: 'Settings',
     icon: Settings,
-    content: NotesTabContent,
+    content: SettingsTabContent,
   },
 ];

@@ -41,9 +41,9 @@ export const BottomNavigator = ({data}) => {
   };
 
   return (
-    <View style={{}}>
+    <View style={{flex: 1}}>
       {/* Content Container */}
-      <View style={{height: hp(98)}}>
+      <View style={{height: hp(100)}}>
         <FlatList
           ref={flatListRef}
           pagingEnabled
@@ -66,6 +66,7 @@ export const BottomNavigator = ({data}) => {
         {/* Tab */}
         {data.map((item, idx) => (
           <TabItem
+            key={idx}
             item={item}
             SvgIcon={item.icon}
             active={idx === active}
@@ -89,17 +90,8 @@ const TabItem = ({item, SvgIcon, active, onPress, isLastItem}) => {
     <View style={[styles.tab]} key={item.id}>
       <TouchableOpacity onPress={onPress}>
         <View style={styles.tabInner}>
-          {/* <Image
-            source={icons.defaultTabIcon}
-            style={[
-              styles.tabImage,
-              active === idx ? styles.tabImageActive : {},
-            ]}
-            resizeMethod="scale"
-            resizeMode="contain"
-          /> */}
           <SvgIcon
-            height={hp(3.5)}
+            height={hp(3.25)}
             width={'100%'}
             fill={active ? 'rgb(0 218 198)' : 'slategray'}
           />
@@ -118,6 +110,7 @@ const styles = StyleSheet.create({
     color: 'white',
   },
   bottomNavigator: {
+    top: -hp(2),
     borderTopEndRadius: 15,
     borderTopStartRadius: 15,
     backgroundColor: colors.darker,
@@ -157,8 +150,7 @@ const styles = StyleSheet.create({
   tabLabel: {
     color: colors.slategray,
     fontSize: fontSizes.medium,
-    fontFamily: fontFamily.NotoSans,
-    fontWeight: 'bold',
+    fontFamily: fontFamily.NotoSans.SemiBold,
     marginTop: 4,
     flexWrap: 'wrap',
   },

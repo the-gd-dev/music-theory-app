@@ -62,6 +62,7 @@ const styles = StyleSheet.create({
     height: 38,
     width: '100%',
     borderRadius: 20,
+    paddingHorizontal: 16
   },
   mtBtn_primary: {
     backgroundColor: colors.primary,
@@ -88,10 +89,9 @@ const styles = StyleSheet.create({
     borderWidth: 2,
   },
   mtBtnText: {
-    lineHeight: 18,
+    lineHeight: 22,
     fontSize: fontSizes.heading4,
-    fontWeight: '500',
-    fontFamily: fontFamily.NotoSans,
+    fontFamily: fontFamily.NotoSans.Regular,
   },
   mtBtnText_primary: {
     color: colors.white,

@@ -9,11 +9,12 @@ export const Container = ({
   statusBarMode = 'dark',
   children,
 }) => {
+  console.log(statusBarMode);
   return (
     <View style={{flex: 1}}>
       <StatusBar
         translucent
-        barStyle={statusBarMode === 'dark' ? 'light-content' : 'dark-content'}
+        barStyle={`${statusBarMode}-content`}
         backgroundColor={'transparent'}
       />
       <SafeAreaView
