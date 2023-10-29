@@ -1,40 +1,125 @@
-import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import React from 'react';
-import {Container} from './Container';
-import {colors, fontFamily, fontSizes, icons} from '../../assets';
+import React, {useCallback, useRef, useState} from 'react';
+import {
+  Dimensions,
+  FlatList,
+  Image,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
+import {
+  Home,
+  MusicNote,
+  Settings,
+  User,
+  colors,
+  fontFamily,
+  fontSizes,
+  icons,
+} from '../../assets';
 import {
   heightPercentageToPx as hp,
   widthPercentageToPx as wp,
 } from '../../utils/responsive-screen';
-export const BottomNavigator = ({tabNavigation = []}) => {
+import {Container} from './Container';
+
+export const BottomNavigator = ({data}) => {
+  const flatListRef = useRef(null);
+  const [active, setActive] = useState(0);
+  const {width} = Dimensions.get('window');
+
+  const SPACING = 5;
+  const ITEM_LENGTH = width;
+  const BORDER_RADIUS = 20;
+  const handleTabClick = idx => {
+    setActive(idx);
+    flatListRef.current.scrollToIndex({
+      animated: true,
+      index: idx,
+    });
+  };
+
   return (
-    <Container containerStyles={{justifyContent: 'space-between'}}>
+    <View style={{}}>
       {/* Content Container */}
-      <View style={{height: hp(90)}}></View>
+      <View style={{height: hp(98)}}>
+        <FlatList
+          ref={flatListRef}
+          pagingEnabled
+          data={data}
+          renderItem={({item, index}) => (
+            <FlatListItem Content={item?.content} width={ITEM_LENGTH} />
+          )}
+          horizontal
+          onMomentumScrollEnd={({nativeEvent}) => {
+            const offsetWidth = nativeEvent.contentOffset.x;
+            const extractedIndex = Math.round(offsetWidth / ITEM_LENGTH);
+            setActive(extractedIndex);
+          }}
+          showsHorizontalScrollIndicator={false}
+          keyExtractor={item => item.id}
+        />
+      </View>
       {/* Bottom Navigator */}
       <View style={styles.bottomNavigator}>
         {/* Tab */}
-        {Array(...Array.from({length: 4})).map((_, idx) => (
-          <TouchableOpacity style={styles.tab}>
-            <View style={styles.tabInner}>
-              <Image
-                source={icons.defaultTabIcon}
-                style={styles.tabImage}
-                resizeMethod="scale"
-                resizeMode="contain"
-              />
-              <Text style={styles.tabLabel}>Tab Title</Text>
-            </View>
-            {idx < 3 && <View style={styles.divider} />}
-          </TouchableOpacity>
+        {data.map((item, idx) => (
+          <TabItem
+            item={item}
+            SvgIcon={item.icon}
+            active={idx === active}
+            isLastItem={idx < data.length - 1}
+            onPress={() => handleTabClick(idx)}
+          />
         ))}
       </View>
-    </Container>
+    </View>
+  );
+};
+
+const FlatListItem = ({Content = () => <></>, width}) => (
+  <View style={{width: width}}>
+    <Content />
+  </View>
+);
+
+const TabItem = ({item, SvgIcon, active, onPress, isLastItem}) => {
+  return (
+    <View style={[styles.tab]} key={item.id}>
+      <TouchableOpacity onPress={onPress}>
+        <View style={styles.tabInner}>
+          {/* <Image
+            source={icons.defaultTabIcon}
+            style={[
+              styles.tabImage,
+              active === idx ? styles.tabImageActive : {},
+            ]}
+            resizeMethod="scale"
+            resizeMode="contain"
+          /> */}
+          <SvgIcon
+            height={hp(3.5)}
+            width={'100%'}
+            fill={active ? 'rgb(0 218 198)' : 'slategray'}
+          />
+          <Text style={[styles.tabLabel, active ? styles.tabLabelActive : {}]}>
+            {item.label}
+          </Text>
+        </View>
+      </TouchableOpacity>
+      {isLastItem && <View style={styles.divider} />}
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
+  itemText: {
+    color: 'white',
+  },
   bottomNavigator: {
+    borderTopEndRadius: 15,
+    borderTopStartRadius: 15,
     backgroundColor: colors.darker,
     flexDirection: 'row',
     alignItems: 'center',
@@ -54,17 +139,23 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   divider: {
-    backgroundColor: colors.darkgray,
+    backgroundColor: colors.white,
     width: wp(0.2),
     height: hp(5.8),
   },
   tabImage: {
     height: hp(4),
     width: '75%',
-    tintColor: 'darkgray',
+    tintColor: 'white',
+  },
+  tabImageActive: {
+    tintColor: 'rgb(0 218 198)',
+  },
+  tabLabelActive: {
+    color: colors.tertiary,
   },
   tabLabel: {
-    color: colors.darkgray,
+    color: colors.slategray,
     fontSize: fontSizes.medium,
     fontFamily: fontFamily.NotoSans,
     fontWeight: 'bold',

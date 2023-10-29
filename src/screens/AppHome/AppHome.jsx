@@ -1,9 +1,10 @@
-import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
-import {BottomNavigator, Container} from '../../components';
+import {StyleSheet} from 'react-native';
 
-const AppHome = ({navigation}) => {
-  return <BottomNavigator />;
+import {BottomNavigator} from '../../components';
+import {tabs} from './TabContent';
+const AppHome = () => {
+  return <BottomNavigator data={tabs} />;
 };
 
 export default AppHome;

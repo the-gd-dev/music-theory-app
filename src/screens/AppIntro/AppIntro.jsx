@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
     marginBottom: '25%',
     textAlign: 'center',
     fontSize: fontSizes.display2,
-    color: colors.white,
+    color: colors.tertiary,
     fontFamily: fontFamily.NotoSans,
     fontWeight: '400',
   },
