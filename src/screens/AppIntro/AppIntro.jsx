@@ -3,8 +3,12 @@ import React from 'react';
 import {Container} from '../../components/Layout';
 import {colors, fontFamily, fontSizes, images} from '../../assets';
 import {MTButton} from '../../components/UI';
+import {
+  heightPercentageToPx as hp,
+  widthPercentageToPx as wp,
+} from '../../utils/responsive-screen';
 
-const AppIntro = () => {
+const AppIntro = ({navigation}) => {
   return (
     <Container containerStyles={styles.container}>
       <View style={styles.contentContainer}>
@@ -16,7 +20,8 @@ const AppIntro = () => {
         <MTButton
           variant="tertiary"
           text="Start Learning"
-          btnStyles={{height: 48, borderRadius: 30}}
+          onPress={() => navigation.navigate('AppHome')}
+          btnStyles={{height: hp(6), borderRadius: 30}}
         />
       </View>
     </Container>
@@ -27,8 +32,8 @@ export default AppIntro;
 
 const styles = StyleSheet.create({
   contentContainer: {
-    width: '100%',
-    height: '80%',
+    width: wp(100),
+    height: hp(80),
     paddingHorizontal: 16,
     justifyContent: 'space-between',
   },

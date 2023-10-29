@@ -1,9 +1,11 @@
 import {useEffect} from 'react';
 import {StyleSheet} from 'react-native';
 import BootSplash from 'react-native-bootsplash';
-import AppIntro from './src/screens/AppIntro/AppIntro';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
+
+import AppHome from './src/screens/AppHome/AppHome';
+import AppIntro from './src/screens/AppIntro/AppIntro';
 
 const Stack = createNativeStackNavigator();
 
@@ -16,6 +18,7 @@ function App() {
     <NavigationContainer>
       <Stack.Navigator screenOptions={{headerShown: false}}>
         <Stack.Screen name="AppIntro" component={AppIntro} />
+        <Stack.Screen name="AppHome" component={AppHome} />
       </Stack.Navigator>
     </NavigationContainer>
   );
