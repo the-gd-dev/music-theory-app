@@ -43,8 +43,9 @@ export const BottomNavigator = ({data}) => {
   return (
     <View style={{flex: 1}}>
       {/* Content Container */}
-      <View style={{height: hp(100)}}>
+      <View style={{height: hp(85)}}>
         <FlatList
+          scrollEnabled={false}
           ref={flatListRef}
           pagingEnabled
           data={data}
@@ -93,7 +94,7 @@ const TabItem = ({item, SvgIcon, active, onPress, isLastItem}) => {
           <SvgIcon
             height={hp(3.25)}
             width={'100%'}
-            fill={active ? 'rgb(0 218 198)' : 'slategray'}
+            stroke={active ? 'rgb(0 218 198)' : 'slategray'}
           />
           <Text style={[styles.tabLabel, active ? styles.tabLabelActive : {}]}>
             {item.label}

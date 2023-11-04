@@ -1,17 +1,12 @@
-import {ScrollView, StyleSheet, Text, View} from 'react-native';
 import React from 'react';
-import {Container} from '../../../components';
+import {ScrollView, StyleSheet, Text} from 'react-native';
 
 export const NotesTabContent = () => {
   return (
-    <Container
-      bgColor="white"
-      statusBarMode="light"
-      containerStyles={{paddingBottom: 20}}>
-      <ScrollView>
-        <Text>Notes Screen TBD.</Text>
-      </ScrollView>
-    </Container>
+    <ScrollView
+      contentContainerStyle={{backgroundColor: 'white', height: '100%'}}>
+      <Text>Profile Screen TBD.</Text>
+    </ScrollView>
   );
 };
 

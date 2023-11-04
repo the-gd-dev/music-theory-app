@@ -4,14 +4,9 @@ import {Container} from '../../../components';
 
 export const ProfileTabContent = () => {
   return (
-    <Container
-      bgColor="white"
-      statusBarMode="light"
-      containerStyles={{paddingBottom: 20}}>
-      <ScrollView>
-        <Text>Profile Screen TBD.</Text>
-      </ScrollView>
-    </Container>
+    <ScrollView contentContainerStyle={{backgroundColor : 'white', height: '100%'}}>
+      <Text>Profile Screen TBD.</Text>
+    </ScrollView>
   );
 };
 

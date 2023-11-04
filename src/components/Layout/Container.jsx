@@ -9,7 +9,6 @@ export const Container = ({
   statusBarMode = 'dark',
   children,
 }) => {
-  console.log(statusBarMode);
   return (
     <View style={{flex: 1}}>
       <StatusBar
